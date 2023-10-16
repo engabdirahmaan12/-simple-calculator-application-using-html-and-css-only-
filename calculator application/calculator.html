@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator Application</title>
+    <style>
+        .calculator {
+            width: 300px;
+            height: 70vh;
+            background-color: yellow;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 auto;
+            border: 2px solid black;
+        }
+
+        .calculator input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 18px;
+            border: 1px solid black;
+        }
+
+        .calculator .row {
+            display: flex;
+        }
+
+        .calculator .row .button {
+            flex: 1;
+            margin-right: 5px;
+        }
+
+        .calculator .row .button:last-child {
+            margin-right: 0;
+        }
+
+        .calculator .row .button input {
+            width: 100%;
+            height: 70px;
+            background-color: chocolate;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calculator .row .button input:hover {
+            background-color: #e6e6e6;
+        }
+
+        .calculator .row .button input:active {
+            background-color: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <div class="row">
+            <div class="button">
+                <input type="button" value="7" onclick="appendNumber(7)">
+            </div>
+            <div class="button">
+                <input type="button" value="8" onclick="appendNumber(8)">
+            </div>
+            <div class="button">
+                <input type="button" value="9" onclick="appendNumber(9)">
+            </div>
+            <div class="button">
+                <input type="button" value="/" onclick="appendOperator('/')">
+            </div>
+        </div>
+        <div class="row">
+            <div class="button">
+                <input type="button" value="4" onclick="appendNumber(4)">
+            </div>
+            <div class="button">
+                <input type="button" value="5" onclick="appendNumber(5)">
+            </div>
+            <div class="button">
+                <input type="button" value="6" onclick="appendNumber(6)">
+            </div>
+            <div class="button">
+                <input type="button" value="*" onclick="appendOperator('*')">
+            </div>
+        </div>
+        <div class="row">
+            <div class="button">
+                <input type="button" value="1" onclick="appendNumber(1)">
+            </div>
+            <div class="button">
+                <input type="button" value="2" onclick="appendNumber(2)">
+            </div>
+            <div class="button">
+                <input type="button" value="3" onclick="appendNumber(3)">
+            </div>
+            <div class="button">
+                <input type="button" value="-" onclick="appendOperator('-')">
+            </div>
+        </div>
+        <div class="row">
+            <div class="button">
+                <input type="button" value="0" onclick="appendNumber(0)">
+            </div>
+            <div class="button">
+                <input type="button" value="." onclick="appendNumber('.')">
+            </div>
+            <div class="button">
+                <input type="button" value="+" onclick="appendOperator('+')">
+            </div>
+            <div class="button">
+                <input type="button" value="=" onclick="calculate()">
+            </div>
+        </div>
+        <div class="row">
+            <div class="button">
+                <input type="button" value="C" onclick="clearResult()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function appendNumber(number) {
+            var result = document.getElementById('result');
+            result.value += number;
+        }
+
+        function appendOperator(operator) {
+            var result = document.getElementById('result');
+            var lastChar = result.value.slice(-1);
+            if (lastChar !== '+' && lastChar !== '-' && lastChar !== '*' && lastChar !== '/' && lastChar !== '.') {
+                result.value += operator;
+            }
+        }
+
+        function calculate() {
+            var result = document.getElementById('result');
+            try {
+                result.value = eval(result.value);
+            } catch (error) {
+                result.value = 'Error';
+            }
+        }
+
+        function clearResult() {
+            var result = document.getElementById('result');
+            result.value = '';
+        }
+    </script>
+</body>
+</html>
